@@ -1,6 +1,6 @@
 # Exercise
 # getting data
-read.csv("/Users/wangyuyan/Documents/王语嫣/Lally/Data Analytics/GPW3_GRUMP_SummaryInformation_2010.csv")
+gpw<-read.csv("/Users/wangyuyan/Documents/王语嫣/Lally/Data Analytics/GPW3_GRUMP_SummaryInformation_2010.csv")
 install.packages('readxl')
 readxl::read_xls("/Users/wangyuyan/Documents/王语嫣/Lally/Data Analytics/EPI/2010EPI_data.xls")
 data()
@@ -40,5 +40,30 @@ qqline(x)
 #fitting a distribution
 boxplot(EPI,DALY) 
 
+#intercompare:EPI, ENVHEALTH, ECOSYSTEM, DALY, AIR_H, WATER_H, AIR_EWATER_E, BIODIVERSITY
+boxplot(EPI,ENVHEALTH,ECOSYSTEM,DALY,AIR_H,WATER_H,AIR_E,WATER_E,BIODIVERSITY)
 
+help("distributions")
 
+# Exercise 2
+# Conditional filtering
+EPILand <- EPI[!Landlock]
+Eland <- EPILand[!is.na(EPILand)]
+hist(Eland)
+hist(Eland,seq(30.,95.,1.0),prob=TRUE)
+hist(No_surface_water)
+hist(No_surface_water,seq)
+EPI_South_Asia <- EPI[EPI_regions=="South Asia"]
+EPI_South_Asia
+
+#GPW3_GRUMP EXERCISE 
+View(gpw)
+summary(gpw)
+fivenum(gpw$Num.Settlement.Points,na.rm = TRUE)
+boxplot(gpw$Num.Settlement.Points)
+hist(gpw$Num.Settlement.Points)
+stem(gpw$Num.Settlement.Points)
+
+#filtering
+gpwEU=gpw$Num.Settlement.Points[gpw$ContinentName=="Europe"]
+gpwEU
